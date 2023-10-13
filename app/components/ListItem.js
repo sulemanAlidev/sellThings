@@ -16,15 +16,17 @@ export default function ListingItem({
   title,
   subTitle,
   onPress,
+  ImageComponenet,
 }) {
   return (
     <Swipeable renderRightActions={renderRightActions}>
       <TouchableHighlight underlayColor={colors.light} onPress={onPress}>
         <View style={styles.card}>
-          <Image style={styles.image} source={image} />
+          {ImageComponenet}
+          {image && <Image style={styles.image} source={image} />}
           <View style={styles.titleContainer}>
             <AppText style={styles.title}>{title}</AppText>
-            <AppText style={styles.subTitle}>{subTitle} </AppText>
+            {subTitle && <AppText style={styles.subTitle}>{subTitle} </AppText>}
           </View>
         </View>
       </TouchableHighlight>
@@ -34,7 +36,7 @@ export default function ListingItem({
 
 const styles = StyleSheet.create({
   card: {
-    // backgroundColor: colors.white,
+    backgroundColor: colors.white,
     flexDirection: "row",
     overflow: "hidden",
     padding: 20,
@@ -52,6 +54,7 @@ const styles = StyleSheet.create({
     color: colors.secondary,
   },
   titleContainer: {
-    padding: 15,
+    marginLeft: 10,
+    justifyContent: "center",
   },
 });

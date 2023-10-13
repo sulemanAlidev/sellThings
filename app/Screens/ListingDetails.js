@@ -14,7 +14,7 @@ export default function ListingDetails() {
       </View>
       <View style={styles.userContainer}>
         <ListingItem
-          image={require("../../assets/mosh.jpg")}
+          image={require("../../assets/suleman.png")}
           title="Mosh"
           subTitle={"5 Listings"}
         />

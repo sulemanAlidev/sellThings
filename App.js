@@ -17,26 +17,14 @@ import AppTextInput from "./app/components/AppTextInput";
 import colors from "./app/config/colors";
 import AppSwitch from "./app/components/AppSwitch";
 import AppPicker from "./app/components/AppPicker";
-const initialItems = [
-  {
-    label: "Furniture",
-    value: 1,
-  },
-  { label: "Clothing", value: 2 },
-  {
-    label: "Camera",
-    value: 3,
-  },
-];
+import LoginScreen from "./app/Screens/LoginScreen";
+import PostScreen from "./app/Screens/PostScreen";
+
 function App() {
   return (
     <GestureHandlerRootView style={styles.container}>
       <Screen>
-        <AppPicker
-          items={initialItems}
-          icon={"apps"}
-          placeholder="categories"
-        />
+        <PostScreen />
       </Screen>
     </GestureHandlerRootView>
   );

@@ -14,25 +14,28 @@ import AppText from "./AppText";
 import { Modal } from "react-native";
 import AppPickerItems from "./AppPickerItems";
 import { Button } from "react-native";
+import ErrorMessage from "./FormGenerator/ErrorMessage";
 
 export default function AppPicker({
-  items,
+  item,
+  formik,
   inputValue,
-  placeholder,
   icon,
   ...props
 }) {
   const [pickerValue, setPickerValue] = useState("");
   const [visible, setVisible] = useState(false);
 
+  const { items, name, startIcon, placeholder } = item;
+  const { errors, touched, setFieldValue } = formik;
   return (
     <>
       <TouchableWithoutFeedback onPress={() => setVisible(true)}>
         <View style={styles.container}>
-          {icon && (
+          {startIcon && (
             <View style={styles.icon}>
               <MaterialCommunityIcons
-                name={icon}
+                name={startIcon}
                 size={25}
                 color={colors.secondary}
               />
@@ -48,6 +51,7 @@ export default function AppPicker({
           />
         </View>
       </TouchableWithoutFeedback>
+      {errors[name] && touched[name] && <ErrorMessage error={errors[name]} />}
       <Modal animationType="slide" visible={visible}>
         <TouchableWithoutFeedback onPress={() => setVisible(false)}>
           <View
@@ -70,6 +74,7 @@ export default function AppPicker({
               onPress={() => {
                 setVisible(false);
                 setPickerValue(item);
+                setFieldValue(name, item);
               }}
             />
           )}
@@ -85,6 +90,7 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 25,
     flexDirection: "row",
+    marginVertical: 10,
   },
   text: {
     fontSize: 18,
